@@ -1,0 +1,35 @@
+--Create a footwear store database
+
+CREATE TABLE footwear(id INTEGER PRIMARY KEY,name TEXT,sku INTEGER,quantity INTEGER,price NUMERIC);
+
+INSERT INTO 
+footwear
+VALUES
+(1,"Ballerina",032,50,85.99),
+(2,"Flat Sandals",014,63,73.99),
+(3,"High Sandals",015,44,93.99),
+(4,"Mules",029,30,73.99),
+(5,"Ankle Boots",033,30,120.99),
+(6,"Knee Boots",034,54,180.99),
+(7,"Thigh Boots",035,74,200.98),
+(8,"Black Trainers",018,55,50.99),
+(9,"White Trainers",017,43,50.99),
+(10,"Slingback",020,29,93.93),
+(11,"Rainbow sneakers",018,32,52.99),
+(12,"Chelsea Boots",036,36,115.99),
+(13,"Flip Flops",005,123,20.99),
+(14,"Ankle Strap Heel",013,45,91.99),
+(15,"Peep Toe Heel",012,12,95.99);
+
+SELECT*FROM footwear;
+
+--display the database order by price
+SELECT*FROM footwear
+WHERE price
+ORDER BY price;
+
+--what is the total number of shoes in stock
+SELECT SUM(quantity) FROM footwear;
+
+
+
