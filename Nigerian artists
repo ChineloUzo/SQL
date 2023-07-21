@@ -1,0 +1,95 @@
+/* Create table about Nigerian international artist,songs written,location and collaborations */
+
+CREATE TABLE artists(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,age NUMERIC);
+
+INSERT INTO artists (name,age) VALUES 
+("Burna Boy",32),
+("Wizkid",33),
+("Davido",30),
+("Yemi Alade",34),
+("Tiwa Savage",43),
+("Ayra Starr",21),
+("Tems",28),
+("Rema",23),
+("Asake",28),
+("Olamide",34),
+("Niniola",36),
+("Kiss Daniel",29),
+("Joe boy",26),
+("Simi",35),
+("Teni",30);
+
+CREATE TABLE songs(id INTEGER PRIMARY KEY AUTOINCREMENT,singer_id INTEGER,song_name TEXT,year_released NUMERIC);
+
+INSERT INTO songs (singer_id,song_name,year_released) VALUES
+(1,"Ye",2018),
+(1,"Last Last",2022),
+(2,"Joro",2019),
+(2,"Ginger",2020),
+(3,"Feel",2023),
+(3,"Unavailable",2023),
+(4,"Johnny",2014),
+(4,"Oh my Gosh",2018),
+(5,"Pick up",2023),
+(5,"Eminado",2013),
+(6,"Rush",2021),
+(6,"Sability",2023),
+(7,"Damages",2020),
+(7,"Try me",2019),
+(8,"Dumebi",2020),
+(8,"Calm down",2022),
+(9,"Sungba",2022),
+(9,"Amapiano",2023);
+
+CREATE TABLE locations (id INTEGER PRIMARY KEY AUTOINCREMENT,singer1_id INTEGER,location TEXT);
+
+INSERT INTO locations (singer1_id,location) VALUES
+(1,"London"),
+(2,"London"),
+(3,"Lagos"),
+(4,"London"),
+(5,"Lagos"),
+(6,"Lagos"),
+(7,"California"),
+(8,"California"),
+(9,"Lagos");
+
+CREATE TABLE collaborations(id INTEGER PRIMARY KEY AUTOINCREMENT,artist1_id INTEGER,artist2_id INTEGER,song_name TEXT);
+
+INSERT INTO collaborations (artist1_id,artist2_id,song_name) VALUES
+(9,1,"Sungba remix"),
+(2,1,"Ginger"),
+(2,7,"Essence"),
+(2,5,"Ma Lo"),
+(6,5,"Stamina"),
+(3,5,"Park Well");
+
+
+-- list artist and their song names
+SELECT artists.name,songs.song_name FROM artists
+JOIN songs
+ON artists.id=songs.singer_id;
+
+-- name the songs by Asake
+SELECT artists.name,songs.song_name FROM artists
+JOIN songs
+ON artists.id=songs.singer_id
+WHERE artists.name=("Asake");
+
+--what is the age of each artist in descending order and their location.
+SELECT artists.name,artists.age,locations.location
+FROM artists
+LEFT OUTER JOIN locations
+ON artists.id=locations.singer1_id
+GROUP BY name
+ORDER BY age desc;
+
+--what artist collaborated and the song name
+SELECT a.name,b.name ,song_name FROM collaborations
+JOIN artists a
+ON collaborations.artist1_id=a.id
+JOIN artists b
+ON collaborations.artist2_id=b.id;
+
+
+
