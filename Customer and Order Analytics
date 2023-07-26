@@ -77,5 +77,6 @@ FROM BIT_DB.JanSales
 WHERE location LIKE '%NY%'
 AND length(orderid) = 6 
 AND orderid <> 'Order ID'
+AND orderID <> ''
 GROUP BY location
 HAVING count(orderID)>2
